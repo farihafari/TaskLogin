@@ -27,7 +27,7 @@ include "model/auth.php";
             <div class="login-result"></div>
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <form action="" method="post" id="registration-form">
+                <form action="" method="post" id="login-form">
                 <div class="mb-3">
                     <label for="" class="form-label">Name</label>
                     <input
@@ -56,7 +56,7 @@ include "model/auth.php";
                 <button
                     type="submit"
                     class="btn btn-outline-primary"
-                    id="registeration"name="registeration"
+                    id="login" name="login"
                 >
                     Submit
                 </button>

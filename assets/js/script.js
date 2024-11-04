@@ -1,4 +1,4 @@
-    $(document).ready(function(){
+
         $(document).ready(function () {
 
             // For Name;
@@ -83,7 +83,8 @@
                     });
                 }
             });
-        
+            
+
             // For EmptyInput
             function emptyinput(id) {
                 if ($(id).val() == "") {
@@ -100,6 +101,7 @@
                 }
             };
         
+            // registration
             $("#registeration").on("click", function (e) {
                 e.preventDefault();
                 let username = $('#user-name').val();
@@ -117,9 +119,7 @@
                     emptyinput("#user-password")
                 }
         
-                // else if ((!nameRE.test(username)) && (!emailRE.test(useremail)) && (!phoneRE.test(userphone)) && (!passwordRE.test(password)) && (userconfirmpass != password)) {
-                //     alert("Invalid Data Please follow the Valid Pattern!") "The code which our teacher writed in the class"
-                // }
+               
         
                 else if (!((nameRE.test(username)) && (emailRE.test(useremail)) && (passwordRE.test(password)))) {
                     alert("Invalid Data Please follow the Valid Pattern!")
@@ -136,6 +136,44 @@
                
         
             });
+// login
+            $("#login").click(function(e){
+                // alert("dfjk")
+                e.preventDefault();
+                let username = $('#user-name').val();
+                let nameRE = /^[A-Za-z\s]{3,15}$/;
+                let password = $('#user-password').val();
+                let passwordRE = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[@$&%#*])[A-Z,a-z,\d,@$&%#*]{8,15}$/;
+                let formData = $("#login-form").serialize();
+
+                console.log(formData); // Check serialized data before AJAX
+            
+                if (!(username &&  password)) {
+                    emptyinput("#user-name");
+                    emptyinput("#user-password")
+                }
         
-        })
+               
+        
+                else if (!((nameRE.test(username)) && (passwordRE.test(password)))) {
+                    alert("Invalid Data Please follow the Valid Pattern!")
+                }else if(username && password){
+                    $.ajax({
+                        url:"ajax/login.php",
+                        type:"post",
+                        data:$("#login-form").serialize(),
+                        success:function(data){
+                            $(".login-result").html(data);
+                            console.log(data);
+                        }
+                        // error: function(xhr, status, error) {
+                        //     $(".login-result").html("<p class='alert alert-danger'>An error occurred.</p>");
+                        // }
+
+                    })
+                }
+               
+        
+            });
+            
     })
